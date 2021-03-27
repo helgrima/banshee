@@ -49,9 +49,11 @@ banshee(Dies, sixes, Points):-
     Points > 0.
 
 banshee(Dies, three_of_a_kind, Points):-
-    length(Dies, 5),
-    permutation(Dies, [D1, D1, D1, _, _]),
-    sum_list(Dies, Points).
+    once((
+        length(Dies, 5),
+        permutation(Dies, [D1, D1, D1, _, _]),
+        sum_list(Dies, Points)
+    )).
 
 banshee(Dies, four_of_a_kind, Points):-
     length(Dies, 5),
@@ -62,6 +64,7 @@ banshee(Dies, fullhouse, 25):-
     length(Dies, 5),
     permutation(Dies, [D1, D1, D2, D2, D2]),
     D1 \= D2.
+
 banshee(Dies, small_straight, 30):-
     length(Dies, 5),
     permutation(Dies, [1, 2, 3, 4, _]).
